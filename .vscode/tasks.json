@@ -6,12 +6,6 @@
         { 
             "label": "stop emulation",
             "type":"shell",
-            "windows": {
-                "command":"taskkill /im mGBA.exe /F"
-            },
-            "osx": {
-                "command": "killall mGBA"
-            },
             "linux":{
                 "command": "pkill -15 mgba-qt"
             }
@@ -40,14 +34,7 @@
             "label": "gdb-debug",
             "type": "shell",
             "dependsOn": ["make debug"],
-            "isBackground": false,
-            "windows": {
-                "command": "C:/mGBA/mGBA.exe -g ${workspaceFolder}/${workspaceFolderBasename}.gba;sleep 5;echo debuggerReady"
-            },
-            "osx":{
-                "command": "/Users/jamies/mGBA/mGBA.app/Contents/MacOS/mGBA",
-                "args": ["-g", "${workspaceFolder}/${workspaceFolderBasename}.gba"]
-            },
+            "isBackground": true,
             "linux":{
                 "command": "/usr/bin/mgba-qt",
                 "args": ["-g", "${workspaceFolder}/${workspaceFolderBasename}.gba"]
@@ -57,7 +44,6 @@
                 "reveal": "always",
                 "panel": "new"
             },
-            "command": "debuggerReady",
             "problemMatcher": [
                 {
                   "pattern": [
@@ -74,13 +60,13 @@
                     "endsPattern": ".",
                   }
                 }
-            ]
+              ]
         },
         {
             "label": "run",
             "type": "shell",
             "isBackground": true,
-            "command": "C:/NO$GBADebugger/NO$GBA.exe  ${workspaceFolder}/${workspaceFolderBasename}.elf",
+            "command": "/usr/bin/mgba-qt ${workspaceFolder}/${workspaceFolderBasename}.gba",
             "problemMatcher": []
         }
     ]
